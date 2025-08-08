@@ -19,12 +19,18 @@ package main
 
 import (
 	"context"
+)
 
+import (
 	"dubbo.apache.org/dubbo-go/v3"
 	"dubbo.apache.org/dubbo-go/v3/config_center"
 	_ "dubbo.apache.org/dubbo-go/v3/imports"
-	greet "github.com/apache/dubbo-go-samples/config_center/apollo/proto"
+
 	"github.com/dubbogo/gost/log/logger"
+)
+
+import (
+	greet "github.com/apache/dubbo-go-samples/config_center/apollo/proto"
 )
 
 // Apollo Configuration Center Parameters
@@ -59,7 +65,7 @@ func main() {
 			config_center.WithDataID(apolloNamespace),
 			config_center.WithAppID(apolloAppID),
 			config_center.WithCluster(apolloCluster),
-			config_center.WithFileExtProperties(),
+			//config_center.WithFileExtProperties(),
 		),
 	)
 	if err != nil {
