@@ -26,16 +26,14 @@ import (
 	"dubbo.apache.org/dubbo-go/v3/config_center"
 	_ "dubbo.apache.org/dubbo-go/v3/imports"
 
-	"github.com/dubbogo/gost/log/logger"
-)
-
-import (
 	greet "github.com/apache/dubbo-go-samples/config_center/apollo/proto"
+
+	"github.com/dubbogo/gost/log/logger"
 )
 
 // Apollo Configuration Center Parameters
 const (
-	apolloMetaAddress = "tony2c4g:8080"
+	apolloMetaAddress = "localhost:8080"
 	apolloAppID       = "SampleApp"
 	apolloCluster     = "default"
 	apolloNamespace   = "dubbo.yml"
@@ -48,23 +46,6 @@ func (srv *GreetTripleServer) Greet(ctx context.Context, req *greet.GreetRequest
 	resp := &greet.GreetResponse{Greeting: "Hello, " + req.Name}
 	return resp, nil
 }
-
-const configCenterApolloServerConfig = `## set in config center, namespace is 'dubbo.yml', appId is 'SampleApp'
-dubbo:
-  registries:
-    demoZK:
-      protocol: zookeeper
-      timeout: 3s
-      address: '127.0.0.1:2181'
-  protocols:
-    triple:
-      name: tri
-      port: 20000
-  provider:
-    services:
-      GreeterProvider:
-        interface: com.apache.dubbo.sample.basic.IGreeter
-`
 
 func main() {
 	ins, err := dubbo.NewInstance(
